@@ -342,6 +342,13 @@ pre:has(> code.mermaid) {
   height: 100%;
 }
 
+/*allow <br> line breaks inside mermaid node labels; the github theme
+  hides them via `code br { display: none }`*/
+.markdown-body code.mermaid br,
+.markdown-theme code.mermaid br {
+  display: inline !important;
+}
+
 /*mermaid text bold effect*/
 svg[id^=mermaid] text {
   stroke: none !important;
