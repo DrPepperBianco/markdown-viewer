@@ -7,6 +7,10 @@
 - custom themes can extend a base theme
 - custom themes can be stored locally per device (no 8KB limit)
 - custom theme editor gains a css text field next to the file upload
+- toggle to display yaml/toml frontmatter (PR #281)
+- markdown-it grid table plugin (PR #233)
+- allow <br> line breaks in mermaid node labels (PR #289)
+- guard background messaging and detect startup paths (PR #290)
 - fix mdc build on newer node (dart-sass instead of node-sass)
 
 ## v5.3 - 2024-04-30
