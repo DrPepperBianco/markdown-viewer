@@ -151,6 +151,9 @@ md.storage.migrations = (state) => {
   if (state.content.codewrap === undefined) {
     state.content.codewrap = false
   }
+  if (state.content.frontmatter === undefined) {
+    state.content.frontmatter = false
+  }
   if (state.themes.wide !== undefined) {
     if (state.themes.wide) {
       state.themes.width = 'full'
@@ -190,7 +193,6 @@ md.storage.migrations = (state) => {
       cjk: false,
       deflist: false,
       footnote: false,
-      gridTableRulePlugin: false,
       ins: false,
       mark: false,
       sub: false,
@@ -198,6 +200,9 @@ md.storage.migrations = (state) => {
       tasklists: false,
     })
 
+  }
+  if (state['markdown-it'].gridTableRulePlugin === undefined) {
+    state['markdown-it'].gridTableRulePlugin = false
   }
   if (state.marked.linkify === undefined) {
     Object.assign(state.marked, {
