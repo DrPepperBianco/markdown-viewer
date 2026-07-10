@@ -463,11 +463,11 @@ pre[class*=language-] ._copy-button._copy-button-marked {
 /*---------------------------------------------------------------------------*/
 /*code wrap*/
 
-body._code-wrap .markdown-body pre,
-body._code-wrap .markdown-body pre > code,
-body._code-wrap .markdown-body pre code,
-body._code-wrap .markdown-theme pre,
-body._code-wrap .markdown-theme pre code,
+body._code-wrap .markdown-body pre:not(:has(> code.mermaid)),
+body._code-wrap .markdown-body pre > code:not(.mermaid),
+body._code-wrap .markdown-body pre code:not(.mermaid),
+body._code-wrap .markdown-theme pre:not(:has(> code.mermaid)),
+body._code-wrap .markdown-theme pre code:not(.mermaid),
 body._code-wrap pre[class*=language-],
 body._code-wrap pre[class*=language-] code,
 body._code-wrap code[class*=language-],
@@ -478,9 +478,10 @@ body._code-wrap #_markdown > pre > code {
   word-break: break-word !important;
 }
 
-/*hanging indent so wrapped lines are distinguishable from real ones*/
-body._code-wrap .markdown-body pre,
-body._code-wrap .markdown-theme pre,
+/*hanging indent so wrapped lines are distinguishable from real ones;
+  mermaid diagram containers are excluded so their layout is untouched*/
+body._code-wrap .markdown-body pre:not(:has(> code.mermaid)),
+body._code-wrap .markdown-theme pre:not(:has(> code.mermaid)),
 body._code-wrap pre[class*=language-],
 body._code-wrap pre#_markdown {
   text-indent: -2em each-line;
