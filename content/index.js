@@ -316,7 +316,7 @@ var copybuttons = (() => {
         return
       }
 
-      root.querySelectorAll('pre > code[class*="language-"]').forEach((code) => {
+      root.querySelectorAll('pre > code:not(.mermaid)').forEach((code) => {
         var pre = code.parentElement
         if (!pre || pre.querySelector('._copy-button')) {
           return
