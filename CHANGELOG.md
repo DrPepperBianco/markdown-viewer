@@ -1,6 +1,11 @@
 
 # Change Log
 
+## Unreleased
+- optional copy buttons for fenced code blocks
+- optional wrapping of long lines in code blocks
+- fix mdc build on newer node (dart-sass instead of node-sass)
+
 ## v5.3 - 2024-04-30
 - custom theme support
 - syntax highlighted raw markdown view
