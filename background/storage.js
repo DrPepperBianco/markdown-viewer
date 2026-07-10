@@ -59,6 +59,7 @@ md.storage.defaults = (compilers) => {
       codewrap: false,
       copy: false,
       emoji: false,
+      frontmatter: false,
       mathjax: false,
       mermaid: false,
       syntax: true,
