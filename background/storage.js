@@ -48,6 +48,7 @@ md.storage.defaults = (compilers) => {
     },
     content: {
       autoreload: false,
+      codewrap: false,
       copy: false,
       emoji: false,
       mathjax: false,
@@ -136,6 +137,9 @@ md.storage.migrations = (state) => {
   }
   if (state.content.copy === undefined) {
     state.content.copy = false
+  }
+  if (state.content.codewrap === undefined) {
+    state.content.codewrap = false
   }
   if (state.themes.wide !== undefined) {
     if (state.themes.wide) {

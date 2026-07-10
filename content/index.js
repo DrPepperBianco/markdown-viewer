@@ -167,6 +167,10 @@ function mount () {
         }))
         $('body').classList.add(`_theme-${state.theme}`, `_color-${color}`)
 
+        state.content.codewrap
+          ? $('body').classList.add('_code-wrap')
+          : $('body').classList.remove('_code-wrap')
+
         if (state.content.syntax) {
           dom.push(m('link#_prism', {
             rel: 'stylesheet', type: 'text/css',
