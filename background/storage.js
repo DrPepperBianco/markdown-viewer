@@ -30,6 +30,14 @@ md.storage = ({compilers}) => {
     md.storage.migrations(state)
 
     set(state)
+
+    // a locally stored custom theme (this device only) overrides the
+    // synced one; the 'local' flag is derived per device, never synced
+    chrome.storage.local.get('custom').then((res) => {
+      state.custom = res.custom
+        ? Object.assign({}, res.custom, {local: true})
+        : Object.assign({}, state.custom, {local: false})
+    })
   })
 
   return {defaults, state, set}
@@ -70,6 +78,7 @@ md.storage.defaults = (compilers) => {
     custom: {
       theme: '',
       color: 'auto',
+      base: '',
     }
   }
 
@@ -200,5 +209,9 @@ md.storage.migrations = (state) => {
       theme: '',
       color: 'auto'
     }
+  }
+  // custom theme can now extend a base theme
+  if (state.custom.base === undefined) {
+    state.custom.base = ''
   }
 }

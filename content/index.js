@@ -154,18 +154,24 @@ function mount () {
       if (state.html) {
         state._themes.custom = state.custom.color
 
+        // a custom theme may extend a base theme; resolve the theme whose
+        // stylesheet, color scheme and wrapper class should actually apply
+        var effective = state.theme === 'custom' && state.custom.base
+          ? state.custom.base
+          : state.theme
+
         var color =
-          state._themes[state.theme] === 'dark' ||
-          (state._themes[state.theme] === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+          state._themes[effective] === 'dark' ||
+          (state._themes[effective] === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches)
           ? 'dark' : 'light'
 
         $('body').classList.remove(...Array.from($('body').classList).filter((name) => /^_theme|_color/.test(name)))
         dom.push(m('link#_theme', {
           onupdate: onupdate.theme,
           rel: 'stylesheet', type: 'text/css',
-          href: state.theme !== 'custom' ? chrome.runtime.getURL(`/themes/${state.theme}.css`) : '',
+          href: effective !== 'custom' ? chrome.runtime.getURL(`/themes/${effective}.css`) : '',
         }))
-        $('body').classList.add(`_theme-${state.theme}`, `_color-${color}`)
+        $('body').classList.add(`_theme-${effective}`, `_color-${color}`)
 
         state.content.codewrap
           ? $('body').classList.add('_code-wrap')
@@ -179,7 +185,7 @@ function mount () {
         }
 
         var theme =
-          (/github(-dark)?/.test(state.theme) ? 'markdown-body' : 'markdown-theme') +
+          (/github(-dark)?/.test(effective) ? 'markdown-body' : 'markdown-theme') +
           (state.themes.width !== 'auto' ? ` _width-${state.themes.width}` : '')
 
         if (state.raw) {
