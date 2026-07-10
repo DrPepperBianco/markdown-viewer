@@ -4,6 +4,9 @@
 ## Unreleased
 - optional copy buttons for fenced code blocks
 - optional wrapping of long lines in code blocks
+- custom themes can extend a base theme
+- custom themes can be stored locally per device (no 8KB limit)
+- custom theme editor gains a css text field next to the file upload
 - fix mdc build on newer node (dart-sass instead of node-sass)
 
 ## v5.3 - 2024-04-30
